@@ -4,12 +4,15 @@ Create Database - MySQL
     Database Setup
 
 	1. Users
-		a. Unique User ID
+		a. user_id
 		b. First name
 		c. Last name
 		d. Username
 		e. Password
 		f. Email address
+        g. user level
+        h. city
+        i. state
 	2. Teams
 		a. Unique Team ID
 		b. Team Name
