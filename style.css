@@ -1,4 +1,24 @@
-/*
-.header > div, .footer > div {
-    background-color: #3285ff;
-}*/
+.awesome {
+    background-color: #42b3f4;
+    padding: 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.register-label {
+    color: white;
+}
+
+.register-header {
+    text-align: center;
+    color: white;
+    background-color: #ff8c1a;
+    margin-bottom: 0px;
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.register-submit {
+    width: 80%;
+}
