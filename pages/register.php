@@ -3,7 +3,9 @@
     <style><?php include '../style.css'; ?></style>
 
 <?php
-createUser();
+if(isset($_POST['submit'])) {
+    createUser();
+}
 ?>
 
 <div class="container">
@@ -14,43 +16,43 @@ createUser();
     <div class="form-group row">
         <label for="input_email" class="register-label col-form-label col-sm-4">Email address</label>
         <div class="col-sm-8">
-        <input type="email" class="form-control" id="email" placeholder="email">
+        <input type="email" name="email" class="form-control" id="email" placeholder="email">
         </div>
     </div>
     <div class="form-group row">
         <label for="first_name" class="register-label col-form-label col-sm-4">First Name</label>
         <div class="col-sm-8">
-        <input type="text" class="form-control" id="fname" placeholder="first name">
+        <input type="text" name="firstname" class="form-control" id="fname" placeholder="first name">
         </div>
     </div>
     <div class="form-group row">
         <label for="last_name" class="register-label col-form-label col-sm-4">Last Name</label>
         <div class="col-sm-8">
-        <input type="text" class="form-control" id="lname" placeholder="last name">
+        <input type="text" name="lastname" class="form-control" id="lname" placeholder="last name">
         </div>
     </div>
     <div class="form-group row">
         <label for="username" class="register-label col-form-label col-sm-4">Username</label>
         <div class="col-sm-8">
-        <input type="text" class="form-control" id="username" placeholder="username">
+        <input type="text" name="username" class="form-control" id="username" placeholder="username">
         </div>
     </div>
     <div class="form-group row">
         <label for="password" class="register-label col-form-label col-sm-4">Password</label>
         <div class="col-sm-8">
-        <input type="password" class="form-control" id="password" placeholder="password">
+        <input type="password" name="password" class="form-control" id="password" placeholder="password">
         </div>
     </div>
     <div class="form-group row">
         <label for="city" class="register-label col-form-label col-sm-4">City</label>
         <div class="col-sm-8">
-        <input type="text" class="form-control" id="city" placeholder="city">
+        <input type="text" name="city" class="form-control" id="city" placeholder="city">
         </div>
     </div>
     <div class="form-group row">
         <label for="state" class="register-label col-form-label col-sm-4">State</label>
         <div class="col-sm-8">
-        <select class="form-control" id="state_select">
+        <select class="form-control" name="state" id="state_select">
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
