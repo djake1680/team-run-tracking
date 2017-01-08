@@ -1,10 +1,73 @@
 <?php include('../template/header.php'); ?>
 <?php include('../includes/functions.php'); ?>
+<?php include('../config.php'); ?>
     <style><?php include '../style.css'; ?></style>
 
 <?php
+
+
+$errNumber = 0;
+$errEmail = '';
+$errFirstname = '';
+$errLastname = '';
+$errUsername = '';
+$errUsernameExists = '';
+$errPass = '';
+$errCity = '';
+
+
 if(isset($_POST['submit'])) {
-    createUser();
+    global $connection;
+    $username = $_POST['username'];
+
+    // connection to see if username already exists
+    $usernameQuery = "SELECT * FROM users where username='$username'";
+    $usernameResult = mysqli_query($connection, $usernameQuery);
+    $get_rows = mysqli_affected_rows($connection);
+
+
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || $_POST['email'] === '') {
+        $errEmail = "email was not valid" . "<br>";
+        $errNumber++;
+    }
+    if(!preg_match("/^[a-zA-Z ]*$/",$_POST['firstname']) || strlen($_POST['firstname']) < 2) {
+        $errFirstname = "first name can only be letters and spaces" . "<br>";
+        $errNumber++;
+    }
+    if(!preg_match("/^[a-zA-Z ]*$/",$_POST['lastname']) || strlen($_POST['lastname']) < 2) {
+        $errLastname = "last name can only be letters and spaces" . "<br>";
+        $errNumber++;
+    }
+    if(!preg_match('/^(?=.{8,20}$)[a-zA-Z0-9]+$/', $username)) {
+        $errUsername = "username is only letters and numbers" . "<br>";
+        $errNumber++;
+    }
+    else if($get_rows >= 1) {
+        $errUsernameExists = "username already exists.  please choose another" . "<br>";
+    }
+    if(!preg_match('((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$!%&]).{6,20})', $_POST['password'])) {
+        $errPass = "password is not correct.  Needs 6-20 characters: At least 1 of each: Capital letter, lowercase letter, number, and special character" . "<br>";
+        $errNumber++;
+    }
+    if(!preg_match('/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/', $_POST['city'])) {
+        $errCity = "city is unsuccessful.  only letters, spaces, and dashes" . "<br>";
+        $errNumber++;
+    }
+
+    if($errNumber === 0) {
+        createUser();
+        header("Location: login.php");
+    }
+    else {
+        echo $errEmail;
+        echo $errFirstname;
+        echo $errLastname;
+        echo $errUsername;
+        echo $errUsernameExists;
+        echo $errPass;
+        echo $errCity;
+        echo "The number of errors is " . $errNumber;
+    }
 }
 ?>
 
