@@ -75,7 +75,7 @@ if(isset($_POST['submit'])) {
     <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <h1 class="register-header">Register for Team Run Tracking!</h1>
-<form class="awesome" action="register.php" method="post">
+<form class="register-body" action="register.php" method="post">
     <div class="form-group row">
         <label for="input_email" class="register-label col-form-label col-sm-4">Email address</label>
         <div class="col-sm-8">

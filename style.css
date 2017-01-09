@@ -1,15 +1,15 @@
-.awesome {
+.register-body, .login-body {
     background-color: #42b3f4;
     padding: 10px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
 
-.register-label {
+.register-label, .login-label {
     color: white;
 }
 
-.register-header {
+.register-header, .login-header {
     text-align: center;
     color: white;
     background-color: #ff8c1a;
@@ -19,6 +19,6 @@
     border-top-right-radius: 20px;
 }
 
-.register-submit {
+.register-submit, .login-submit {
     width: 80%;
 }
