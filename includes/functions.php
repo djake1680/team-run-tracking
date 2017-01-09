@@ -1,4 +1,9 @@
-<?php include('../config.php'); ?>
+<?php
+if(file_exists('../config.php')) {
+    include('../config.php');
+}
+
+?>
 
 
 <?php
@@ -33,19 +38,26 @@ if (mysqli_connect_errno())
         $password = crypt($password, $hashF_and_salt);
 
         // build query and check if it worked
-//        $query = "INSERT INTO users(username, password, firstname, lastname, user_level, email, city, state) ";
-//        $query .= "VALUES ('$username', '$password', '$firstname', '$lastname', '2', '$email', '$city', '$state')";
-//
-//        $result = mysqli_query($connection, $query);
-//
-//        if(!$result) {
-//            die('Query FAILED' . mysqli_error());
-//        }
-//        else {
-//            echo "Record Created";
-//        }
+        $query = "INSERT INTO users(username, password, firstname, lastname, user_level, email, city, state) ";
+        $query .= "VALUES ('$username', '$password', '$firstname', '$lastname', '2', '$email', '$city', '$state')";
+
+        $result = mysqli_query($connection, $query);
+
+        if(!$result) {
+            die('Query FAILED' . mysqli_error());
+        }
+        else {
+            echo "Record Created";
+        }
 
     }
+}
+
+function logout_user() {
+    echo "logging out " . $_SESSION['firstname'] . "<br>";
+    unset($_SESSION['firstname']);
+    session_destroy();
+    echo "logged out";
 }
 
 

@@ -1,5 +1,9 @@
-<?php include('../template/header.php'); ?>
-<?php include('../includes/functions.php'); ?>
+<?php
+include('../template/header.php');
+include('../includes/functions.php');
+session_start();
+?>
+
 <style><?php include '../style.css'; ?></style>
 
 <?
@@ -22,7 +26,7 @@ if(isset($_POST['login-submit'])) {
         $login_password = crypt($login_password, $hashF_and_salt);
         echo $login_password . " from login" . "<br>";
 
-        $loginUsernameQuery = "SELECT username, password FROM users where username='$login_username'";
+        $loginUsernameQuery = "SELECT username, password, firstname FROM users where username='$login_username'";
         $loginUsernameResult = mysqli_query($connection, $loginUsernameQuery);
         $row = mysqli_fetch_array($loginUsernameResult);
         $count = mysqli_num_rows($loginUsernameResult);
@@ -32,11 +36,14 @@ if(isset($_POST['login-submit'])) {
 
         $dbPassword = $row['password'];
         $dbUsername = $row['username'];
+        $dbFirstname = $row['firstname'];
         echo $dbPassword . "<br>";
         echo $dbUsername . "<br>";
 
         if($count == 1 && $login_password == $dbPassword) {
             echo "match found!!!";
+            $_SESSION['firstname'] = $dbFirstname;
+            header("Location: ../index.php");
         }
         else {
             echo "incorrect credentials";
