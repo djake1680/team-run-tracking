@@ -1,3 +1,8 @@
+.register-button {
+    text-align: center;
+    margin-top: 15px;
+}
+
 .register-body, .login-body {
     background-color: #42b3f4;
     padding: 10px;

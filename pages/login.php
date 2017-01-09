@@ -1,17 +1,8 @@
 <?php
-include('../template/header.php');
-include('../includes/functions.php');
-session_start();
-?>
-
-<style><?php include '../style.css'; ?></style>
-
-<?
 
 $login_password = '';
 
 if(isset($_POST['login-submit'])) {
-    //print_r($_POST);
 
     // make sure username and password have been entered
     if(empty($_POST['login-username']) || empty($_POST['login-password'])) {
@@ -43,7 +34,7 @@ if(isset($_POST['login-submit'])) {
         if($count == 1 && $login_password == $dbPassword) {
             echo "match found!!!";
             $_SESSION['firstname'] = $dbFirstname;
-            header("Location: ../index.php");
+            header("Location: index.php");
         }
         else {
             echo "incorrect credentials";
@@ -53,12 +44,12 @@ if(isset($_POST['login-submit'])) {
 }
 
 ?>
-
+<!-- login form -->
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <h1 class="login-header">Log In</h1>
-                <form class="login-body" action="login.php" method="post">
+                <form class="login-body" action="index.php" method="post">
                     <div class="form-group row">
                         <label for="login-username" class="login-label col-form-label col-sm-4">Username</label>
                         <div class="col-sm-8">
@@ -73,10 +64,7 @@ if(isset($_POST['login-submit'])) {
                     </div>
                     <button type="submit" name="login-submit" class="btn btn-primary login-submit center-block">Submit</button>
                 </form>
+                <p class="register-button">Not a member?  Click <a href="pages/register.php">HERE</a> to register</p>
             </div>
         </div>
     </div>
-
-
-
-<?php include('../template/footer.php'); ?>

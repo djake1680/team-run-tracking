@@ -6,6 +6,8 @@ include "includes/functions.php";
 session_start();
 ?>
 
+<style><?php include 'style.css'; ?></style>
+
 <?php
 if(isset($_SESSION['firstname'])) {
     $sessionUser = $_SESSION['firstname'];
@@ -15,7 +17,7 @@ if(isset($_SESSION['firstname'])) {
 <?php
 
     if(!isset($sessionUser)) {
-        include "pages/newuser.php";
+        include "pages/login.php";
     }
     else {
         include "pages/loggedinhome.php";
