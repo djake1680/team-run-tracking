@@ -1,5 +1,4 @@
 <?php
-
 $login_password = '';
 
 if(isset($_POST['login-submit'])) {
@@ -11,34 +10,8 @@ if(isset($_POST['login-submit'])) {
     else {
         global $connection;
         $login_username = $_POST['login-username'];
-        //$login_username = mysqli_real_escape_string($connection, $login_username);
-        //$login_password = mysqli_real_escape_string($connection, $login_password);
         $login_password = $_POST['login-password'];
-        $login_password = crypt($login_password, $hashF_and_salt);
-        echo $login_password . " from login" . "<br>";
-
-        $loginUsernameQuery = "SELECT username, password, firstname FROM users where username='$login_username'";
-        $loginUsernameResult = mysqli_query($connection, $loginUsernameQuery);
-        $row = mysqli_fetch_array($loginUsernameResult);
-        $count = mysqli_num_rows($loginUsernameResult);
-        echo $count . "<br>";
-        echo ($row['username']) . "<br>";
-        //echo ($row['password']) . "<br>";
-
-        $dbPassword = $row['password'];
-        $dbUsername = $row['username'];
-        $dbFirstname = $row['firstname'];
-        echo $dbPassword . "<br>";
-        echo $dbUsername . "<br>";
-
-        if($count == 1 && $login_password == $dbPassword) {
-            echo "match found!!!";
-            $_SESSION['firstname'] = $dbFirstname;
-            header("Location: index.php");
-        }
-        else {
-            echo "incorrect credentials";
-        }
+        login_user($login_username, $login_password);
     }
 
 }

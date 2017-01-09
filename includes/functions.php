@@ -13,10 +13,9 @@ function createUser() {
     if(isset($_POST['submit'])) {
         global $connection;
         global $hashF_and_salt;
-if (mysqli_connect_errno())
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
+        if (mysqli_connect_errno()) {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
 
         // extract data from $_POST superglobal
         $username = $_POST['username'];
@@ -58,6 +57,37 @@ function logout_user() {
     unset($_SESSION['firstname']);
     session_destroy();
     echo "logged out";
+}
+
+function login_user($login_username, $login_password) {
+    global $connection;
+    global $hashF_and_salt;
+    echo "login function called";
+    $login_password = crypt($login_password, $hashF_and_salt);
+    echo $login_password . " from login" . "<br>";
+
+    $loginUsernameQuery = "SELECT username, password, firstname FROM users where username='$login_username'";
+    $loginUsernameResult = mysqli_query($connection, $loginUsernameQuery);
+    $row = mysqli_fetch_array($loginUsernameResult);
+    $count = mysqli_num_rows($loginUsernameResult);
+    echo $count . "<br>";
+    echo ($row['username']) . "<br>";
+    //echo ($row['password']) . "<br>";
+
+    $dbPassword = $row['password'];
+    $dbUsername = $row['username'];
+    $dbFirstname = $row['firstname'];
+    echo $dbPassword . "<br>";
+    echo $dbUsername . "<br>";
+
+    if($count == 1 && $login_password == $dbPassword) {
+        echo "match found!!!";
+        $_SESSION['firstname'] = $dbFirstname;
+        header("Location: index.php");
+    }
+    else {
+        echo "incorrect credentials";
+    }
 }
 
 

@@ -8,7 +8,6 @@
 
 <?php
     logout_user();
-
 ?>
 
 <p><a href="../index.php">Return to Home Page</a></p>
