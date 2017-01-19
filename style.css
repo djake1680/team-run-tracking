@@ -27,3 +27,34 @@
 .register-submit, .login-submit {
     width: 80%;
 }
+
+.page_header {
+    margin-top: 0px;
+}
+
+.logged_in_top_menu li{
+    display: inline;
+    float: right;
+    margin-left: 20px;
+    padding-top: 15px;
+}
+
+.weather_icon {
+    padding-right: 40px;
+}
+
+.weather_logo {
+    width: 90px;
+    margin-left: 20px;
+}
+
+.weather_box {
+    height: auto;
+}
+
+.weather-info p{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    margin-bottom: 0px;
+}

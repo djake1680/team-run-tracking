@@ -66,7 +66,7 @@ function login_user($login_username, $login_password) {
     $login_password = crypt($login_password, $hashF_and_salt);
     echo $login_password . " from login" . "<br>";
 
-    $loginUsernameQuery = "SELECT username, password, firstname FROM users where username='$login_username'";
+    $loginUsernameQuery = "SELECT username, password, firstname, zipcode FROM users where username='$login_username'";
     $loginUsernameResult = mysqli_query($connection, $loginUsernameQuery);
     $row = mysqli_fetch_array($loginUsernameResult);
     $count = mysqli_num_rows($loginUsernameResult);
@@ -77,12 +77,12 @@ function login_user($login_username, $login_password) {
     $dbPassword = $row['password'];
     $dbUsername = $row['username'];
     $dbFirstname = $row['firstname'];
-    echo $dbPassword . "<br>";
-    echo $dbUsername . "<br>";
+    $dbZipCode = $row['zipcode'];
 
     if($count == 1 && $login_password == $dbPassword) {
         echo "match found!!!";
         $_SESSION['firstname'] = $dbFirstname;
+        $_SESSION['zipcode'] = $dbZipCode;
         header("Location: index.php");
     }
     else {
