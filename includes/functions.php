@@ -34,7 +34,7 @@ function createUser() {
 
         // encrypt the password
         $options = [
-            'cost' => 10,
+            'cost' => 9,
         ];
         $password = password_hash($password, PASSWORD_BCRYPT, $options);
         echo $password;
@@ -86,7 +86,18 @@ function login_user($login_username, $login_password) {
         if (password_verify($login_password, $dbPassword)) {
 //            echo "password works";
             if(password_needs_rehash($dbPassword, PASSWORD_DEFAULT, $options)) {
-                echo "password needs rehashed";
+                //echo "password needs rehashed";
+                $newPassword = password_hash($login_password, PASSWORD_BCRYPT, $options);
+                echo $newPassword;
+                $query = "UPDATE users SET password ='$newPassword' where username='$dbUsername'";
+                $result = mysqli_query($connection, $query);
+
+                if(!$result) {
+                    //die('Query FAILED' . mysqli_error());
+                }
+                else {
+                    echo "Password Updated";
+                }
             }
             else {
                 echo "password is fine";
