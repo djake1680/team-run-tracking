@@ -37,7 +37,7 @@ if(isset($_POST['login-submit'])) {
                     </div>
                     <button type="submit" name="login-submit" class="btn btn-primary login-submit center-block">Submit</button>
                 </form>
-                <p class="register-button">Not a member?  Click <a href="pages/register.php">HERE</a> to register</p>
+                <!--<p class="register-button">Not a member?  Click <a href="pages/register.php">HERE</a> to register</p>-->
             </div>
         </div>
     </div>

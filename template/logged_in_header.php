@@ -31,36 +31,37 @@
 <body>
 
 <nav class="navbar navbar-default header">
-    <div class="container-fluid">
+    <div class="container-fluid logged-in-header">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="navbar-text">Team Runner</li>
             </ul>
             <ul class="logged_in_top_menu">
+                <!--<li><button class="btn btn-header">Log Out</button></li>-->
                 <?php
                 if(file_exists("../pages/logout-complete.php")) {
-                    echo "<li><a href='../pages/logout-complete.php'>Log Out</a></li>";
+                    echo "<li><a href='../pages/logout-complete.php'><button class='btn btn-header'>Log Out</button></a></li>";
                 }
                 else if(file_exists("pages/logout-complete.php")) {
-                    echo "<li><a href='pages/logout-complete.php'>Log Out</a></li>";
+                    echo "<li><a href='pages/logout-complete.php'><button class='btn btn-header'>Log Out</button></a></li>";
                 }
                 if(file_exists("index.php")) {
-                echo "<li><a href='index.php'>Home Page</a></li>";
+                echo "<li><a href='index.php'><button class='btn btn-header'>Home Page</button></a></li>";
                 }
                 else if(file_exists("../index.php")) {
-                echo "<li><a href='../index.php'>Home Page</a></li>";
+                echo "<li><a href='../index.php'><button class='btn btn-header'>Home Page</button></a></li>";
                 }
                 if(file_exists("../pages/teampage.php")) {
-                echo "<li><a href='../pages/teampage.php'>Team Page</a></li>";
+                echo "<li><a href='../pages/teampage.php'><button class='btn btn-header'>Team Page</button></a></li>";
                 }
                 else if(file_exists("pages/teampage.php")) {
-                echo "<li><a href='pages/teampage.php'>Team Page</a></li>";
+                echo "<li><a href='pages/teampage.php'><button class='btn btn-header'>Team Page</button></a></li>";
                 }
                 if(file_exists("../pages/personalpage.php")) {
-                    echo "<li><a href='../pages/personalpage.php'>Personal Page</a></li>";
+                    echo "<li><a href='../pages/personalpage.php'><button class='btn btn-header'>Personal Page</button></a></li>";
                 }
                 else if(file_exists("pages/personalpage.php")) {
-                    echo "<li><a href='pages/personalpage.php'>Personal Page</a></li>";
+                    echo "<li><a href='pages/personalpage.php'><button class='btn btn-header'>Personal Page</button></a></li>";
                 }
                 ?>
             </ul>

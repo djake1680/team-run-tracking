@@ -7,7 +7,7 @@ function userWeather(zipcode) {
     //$(".zipcode").html(zipcode);
     console.log(zipcode);
 
-    var ajax_url = "http://api.wunderground.com/api/ef5a156e62f050d2/conditions/q/" + zipcode + ".json";
+    var ajax_url = "http://api.wunderground.com/api/1327244ae3ca9b7d/conditions/q/" + zipcode + ".json";
 
     $.ajax( {
         url: ajax_url,

@@ -14,6 +14,7 @@ $errUsername = '';
 $errUsernameExists = '';
 $errPass = '';
 $errCity = '';
+$errZip = '';
 
 
 if(isset($_POST['submit'])) {
@@ -53,6 +54,10 @@ if(isset($_POST['submit'])) {
         $errCity = "city is unsuccessful.  only letters, spaces, and dashes" . "<br>";
         $errNumber++;
     }
+    if(!preg_match('/^\d{5}(-\d{4})?$/', $_POST['zipcode'])) {
+        $errZip = 'zip is unsuccessful.  Please enter 5 digit or 9 digit zip code' . "<br>";
+        $errNumber++;
+    }
 
     if($errNumber === 0) {
         createUser();
@@ -66,6 +71,7 @@ if(isset($_POST['submit'])) {
         echo $errUsernameExists;
         echo $errPass;
         echo $errCity;
+        echo $errZip;
         echo "The number of errors is " . $errNumber;
     }
 }
@@ -168,6 +174,12 @@ if(isset($_POST['submit'])) {
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
         </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="zipcode" class="register-label col-form-label col-sm-4">Zip Code</label>
+        <div class="col-sm-8">
+            <input type="text" name="zipcode" class="form-control" id="zipcode" placeholder="zipcode">
         </div>
     </div>
     <button type="submit" name="submit" class="btn btn-primary register-submit center-block">Submit</button>

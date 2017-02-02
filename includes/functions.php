@@ -25,6 +25,7 @@ function createUser() {
         $firstname = ucwords($_POST['firstname']);
         $lastname = ucwords($_POST['lastname']);
         $state = $_POST['state'];
+        $zipcode = $_POST['zipcode'];
 
         $username = mysqli_real_escape_string($connection, $username);
         $password = mysqli_real_escape_string($connection, $password);
@@ -32,13 +33,16 @@ function createUser() {
         $email = mysqli_real_escape_string($connection, $email);
         $firstname = mysqli_real_escape_string($connection, $firstname);
         $lastname = mysqli_real_escape_string($connection, $lastname);
+        $state = mysqli_real_escape_string($connection, $state);
+        $zipcode = mysqli_real_escape_string($connection, $zipcode);
+
 
         // encrypt the password
         $password = crypt($password, $hashF_and_salt);
 
         // build query and check if it worked
         $query = "INSERT INTO users(username, password, firstname, lastname, user_level, email, city, state) ";
-        $query .= "VALUES ('$username', '$password', '$firstname', '$lastname', '2', '$email', '$city', '$state')";
+        $query .= "VALUES ('$username', '$password', '$firstname', '$lastname', '2', '$email', '$city', '$state', '$zipcode')";
 
         $result = mysqli_query($connection, $query);
 
