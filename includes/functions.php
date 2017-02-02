@@ -3,11 +3,6 @@ if(file_exists('../config.php')) {
     include('../config.php');
 }
 
-?>
-
-
-<?php
-
 function createUser() {
     echo "function called";
     if(isset($_POST['submit'])) {
@@ -103,12 +98,9 @@ function login_user($login_username, $login_password) {
 //        echo "match found!!!";
         $_SESSION['firstname'] = $dbFirstname;
         $_SESSION['zipcode'] = $dbZipCode;
-        //header("Location: index.php");
+        header("Location: index.php");
     }
     else {
         echo "incorrect credentials";
     }
 }
-
-
-?>
