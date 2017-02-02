@@ -12,7 +12,7 @@ function createUser() {
     echo "function called";
     if(isset($_POST['submit'])) {
         global $connection;
-        global $hashF_and_salt;
+
         if (mysqli_connect_errno()) {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
@@ -38,16 +38,20 @@ function createUser() {
 
 
         // encrypt the password
-        $password = crypt($password, $hashF_and_salt);
+        $options = [
+            'cost' => 10,
+        ];
+        $password = password_hash($password, PASSWORD_BCRYPT, $options);
+        echo $password;
 
         // build query and check if it worked
-        $query = "INSERT INTO users(username, password, firstname, lastname, user_level, email, city, state) ";
+        $query = "INSERT INTO users(username, password, firstname, lastname, user_level, email, city, state, zipcode) ";
         $query .= "VALUES ('$username', '$password', '$firstname', '$lastname', '2', '$email', '$city', '$state', '$zipcode')";
 
         $result = mysqli_query($connection, $query);
 
         if(!$result) {
-            die('Query FAILED' . mysqli_error());
+            //die('Query FAILED' . mysqli_error());
         }
         else {
             echo "Record Created";
@@ -65,10 +69,6 @@ function logout_user() {
 
 function login_user($login_username, $login_password) {
     global $connection;
-    global $hashF_and_salt;
-    echo "login function called";
-    $login_password = crypt($login_password, $hashF_and_salt);
-    echo $login_password . " from login" . "<br>";
 
     $loginUsernameQuery = "SELECT username, password, firstname, zipcode FROM users where username='$login_username'";
     $loginUsernameResult = mysqli_query($connection, $loginUsernameQuery);
@@ -83,11 +83,27 @@ function login_user($login_username, $login_password) {
     $dbFirstname = $row['firstname'];
     $dbZipCode = $row['zipcode'];
 
-    if($count == 1 && $login_password == $dbPassword) {
-        echo "match found!!!";
+    $options = [
+        'cost' => 10,
+    ];
+
+    if($count == 1) {
+        if (password_verify($login_password, $dbPassword)) {
+//            echo "password works";
+            if(password_needs_rehash($dbPassword, PASSWORD_DEFAULT, $options)) {
+                echo "password needs rehashed";
+            }
+            else {
+                echo "password is fine";
+            }
+        }
+        else {
+            echo "issue with password";
+        }
+//        echo "match found!!!";
         $_SESSION['firstname'] = $dbFirstname;
         $_SESSION['zipcode'] = $dbZipCode;
-        header("Location: index.php");
+        //header("Location: index.php");
     }
     else {
         echo "incorrect credentials";

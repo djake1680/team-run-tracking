@@ -61,7 +61,7 @@ if(isset($_POST['submit'])) {
 
     if($errNumber === 0) {
         createUser();
-        header("Location: login.php");
+        header("Location: ../index.php");
     }
     else {
         echo $errEmail;
