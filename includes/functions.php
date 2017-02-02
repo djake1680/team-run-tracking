@@ -34,7 +34,7 @@ function createUser() {
 
         // encrypt the password
         $options = [
-            'cost' => 9,
+            'cost' => 10,
         ];
         $password = password_hash($password, PASSWORD_BCRYPT, $options);
         echo $password;
