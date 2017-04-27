@@ -1,5 +1,7 @@
 # team-run-tracking
 
+Team Run Tracking is a project that I'm building where you can track your running goals alone or with a team.  I really wanted to build in a login tool with authentication and validation and have completed this step.  
+
 Create Database - MySQL
     Database Setup
 
