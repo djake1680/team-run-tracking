@@ -34,7 +34,7 @@
     <div class="container-fluid logged-in-header">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="navbar-text">Team Runner</li>
+                <li class="navbar-text">Track My Running</li>
             </ul>
             <ul class="logged_in_top_menu">
                 <!--<li><button class="btn btn-header">Log Out</button></li>-->
@@ -50,12 +50,6 @@
                 }
                 else if(file_exists("../index.php")) {
                 echo "<li><a href='../index.php'><button class='btn btn-header'>Home Page</button></a></li>";
-                }
-                if(file_exists("../pages/teampage.php")) {
-                echo "<li><a href='../pages/teampage.php'><button class='btn btn-header'>Team Page</button></a></li>";
-                }
-                else if(file_exists("pages/teampage.php")) {
-                echo "<li><a href='pages/teampage.php'><button class='btn btn-header'>Team Page</button></a></li>";
                 }
                 if(file_exists("../pages/personalpage.php")) {
                     echo "<li><a href='../pages/personalpage.php'><button class='btn btn-header'>Personal Page</button></a></li>";

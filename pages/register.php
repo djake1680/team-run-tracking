@@ -27,6 +27,7 @@ if(isset($_POST['submit'])) {
     $get_rows = mysqli_affected_rows($connection);
 
 
+
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || $_POST['email'] === '') {
         $errEmail = "email was not valid" . "<br>";
         $errNumber++;
@@ -45,6 +46,7 @@ if(isset($_POST['submit'])) {
     }
     else if($get_rows >= 1) {
         $errUsernameExists = "username already exists.  please choose another" . "<br>";
+        $errNumber++;
     }
     if(!preg_match('((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$!%&]).{6,20})', $_POST['password'])) {
         $errPass = "password is not correct.  Needs 6-20 characters: At least 1 of each: Capital letter, lowercase letter, number, and special character" . "<br>";
@@ -191,4 +193,4 @@ if(isset($_POST['submit'])) {
 
 
 
-<?php include('../template/footer.php'); ?>
+<? //php include('../template/footer.php'); ?>

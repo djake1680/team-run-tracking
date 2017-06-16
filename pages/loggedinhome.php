@@ -5,6 +5,4 @@
 
 <p><a href="pages/personalpage.php">Your Home Page</a></p>
 
-<p><a href="pages/teampage.php">Team Page</a></p>
-
 <p><a href="pages/logout-complete.php">Log Out</a></p>

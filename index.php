@@ -43,6 +43,6 @@ if(isset($_SESSION['zipcode'])) {
 
    
    
-<?php include("template/footer.php"); ?>
+<? //php include("template/footer.php"); ?>
 
     
