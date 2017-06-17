@@ -13,7 +13,7 @@ else {
 $sessionZipCode = $_SESSION['zipcode'];
 ?>
 
-    <script src="../main.js"></script>
+<!--    <script src="../main.js"></script>-->
     <style><?php include '../style.css'; ?></style>
 
     <script type="text/javascript"> userWeather(<?php echo $sessionZipCode ?>); </script>
@@ -27,12 +27,18 @@ $sessionZipCode = $_SESSION['zipcode'];
                 <div class="col-md-4 weather_box">
                     <div class="row">
                         <div class="col-md-12 weather-info">
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+    </div>
+
+    <div class="container">
+        <!-- ADD RUN FORM -->
+        <?php include('../template/addrunform.php'); ?>
     </div>
 
 

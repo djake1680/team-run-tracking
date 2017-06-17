@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+    var date_input=$('input[name="run-date"]'); //our date input has the name "add-run-date"
+    date_input.datepicker({
+        format: 'mm/dd/yyyy',
+        orientation: "auto",
+        todayHighlight: true,
+        autoclose: true,
+    });
 
 });
 

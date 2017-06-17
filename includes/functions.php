@@ -65,7 +65,7 @@ function logout_user() {
 function login_user($login_username, $login_password) {
     global $connection;
 
-    $loginUsernameQuery = "SELECT username, password, firstname, zipcode FROM users where username='$login_username'";
+    $loginUsernameQuery = "SELECT user_id, username, password, firstname, zipcode FROM users where username='$login_username'";
     $loginUsernameResult = mysqli_query($connection, $loginUsernameQuery);
     $row = mysqli_fetch_array($loginUsernameResult);
     $count = mysqli_num_rows($loginUsernameResult);
@@ -77,6 +77,7 @@ function login_user($login_username, $login_password) {
     $dbUsername = $row['username'];
     $dbFirstname = $row['firstname'];
     $dbZipCode = $row['zipcode'];
+    $user_id = $row['user_id'];
 
     $options = [
         'cost' => 10,
@@ -109,9 +110,63 @@ function login_user($login_username, $login_password) {
 //        echo "match found!!!";
         $_SESSION['firstname'] = $dbFirstname;
         $_SESSION['zipcode'] = $dbZipCode;
-        header("Location: index.php");
+        $_SESSION['user_id'] = $user_id;
+        header("Location: pages/personalpage.php");
     }
     else {
         echo "incorrect credentials";
+    }
+}
+
+function add_run() {
+    if(isset($_POST['add-run-submit'])) {
+        global $connection;
+        date_default_timezone_set("America/Los_Angeles");
+
+        if (mysqli_connect_errno()) {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+
+
+        // convert date entered into timestamp
+        $rundate = $_POST['run-date'];
+        $rundate = DateTime::createFromFormat('m/d/Y',$rundate);
+        $rundate = $rundate->getTimestamp();
+
+        // convert hours, minutes, and seconds into total seconds
+        $runhours = $_POST['add-run-hours'];
+        $runminutes = $_POST['add-run-minutes'];
+        $runseconds = $_POST['add-run-seconds'];
+
+        $hours_to_seconds = (($runhours * 60) * 60);
+        $minutes_to_seconds = $runminutes * 60;
+        $runtime = $hours_to_seconds + $minutes_to_seconds + $runseconds;
+
+        $runmiles = $_POST['add-run-miles'];
+        $runcity = ucwords($_POST['add-run-city']);
+        $runstate = $_POST['add-run-state'];
+
+        $userid = $_SESSION['user_id'];
+        $rundate = mysqli_real_escape_string($connection, $rundate);
+        $runmiles = mysqli_real_escape_string($connection, $runmiles);
+        $runtime = mysqli_real_escape_string($connection, $runtime);
+        $runcity = mysqli_real_escape_string($connection, $runcity);
+        $runstate = mysqli_real_escape_string($connection, $runstate);
+
+        // build query and check if it worked
+        $query = "INSERT INTO run_data(user_id, run_date, run_miles, run_time, run_city, run_state) ";
+        $query .= "VALUES ('$userid', '$rundate', '$runmiles', '$runtime', '$runcity', '$runstate')";
+
+        $result = mysqli_query($connection, $query);
+
+        if(!$result) {
+            //die('Query FAILED' . mysqli_error());
+        }
+        else {
+            echo "Record Created";
+        }
+
+        $_POST = array();
+
     }
 }

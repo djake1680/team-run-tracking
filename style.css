@@ -1,3 +1,7 @@
+body {
+    min-height: 100vh;
+}
+
 .btn-header {
     background-color: #ff8c1a;
     color: white;
@@ -78,4 +82,22 @@
 
 .team-page {
     width: 90%;
+}
+
+/* Add Run Submit Button */
+.add-run-submit {
+    vertical-align: bottom;
+}
+
+.add-run-hours, .add-run-minutes, .add-run-seconds {
+    width: 80px;
+    text-align: center;
+}
+
+#add-run-hours-select, #add-run-minutes-select, #add-run-seconds-select {
+    width: 80px;
+}
+
+.add-run-city, .add-run-state, .add-run-date, .add-run-miles {
+    text-align: center;
 }
