@@ -52,6 +52,7 @@ function createUser() {
             echo "Record Created";
         }
 
+        $_POST = array();
     }
 }
 
@@ -167,6 +168,54 @@ function add_run() {
         }
 
         $_POST = array();
-
     }
+}
+
+function showRunningData() {
+    //echo "show running data function called";
+    $userid = $_SESSION['user_id'];
+    //echo $userid;
+    global $connection;
+    date_default_timezone_set("America/Los_Angeles");
+
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $selectRunningDataQuery = "SELECT * FROM run_data WHERE user_id = '$userid' ORDER BY run_date";
+    $selectRunningData = mysqli_query($connection, $selectRunningDataQuery);
+
+    while ($row = mysqli_fetch_array($selectRunningData)) {
+
+        $rundate = date('m/d/Y', $row['run_date']);
+        $runmiles = $row['run_miles'];
+
+        // put together run time into hours, minutes, seconds
+        $runtime = $row['run_time'];
+        $leftover = $runtime % 3600;
+        $hours = floor($runtime / 3600);
+        $minutes = floor($leftover / 60);
+        $leftoverseconds = $leftover % 60;
+        if($leftoverseconds < 10) {
+            $leftoverseconds = $leftoverseconds . "0";
+        }
+        $finaltime = $hours . ":" . $minutes . ":" . $leftoverseconds;
+
+        // calculate average time
+        $averageseconds = $runtime / $runmiles;
+        $averageminutes = floor($averageseconds / 60);
+        $averageleftoverseconds = round($averageseconds % 60);
+        $finalaverage = $averageminutes . ":" . $averageleftoverseconds;
+
+        //$runaverage = $runtime / $runmiles;
+
+        $runcity = $row['run_city'];
+        $runstate = $row['run_state'];
+
+        $tablerow = "<tr><td>$rundate</td><td>$runmiles</td><td>$finaltime</td><td>$finalaverage</td><td>$runcity</td><td>$runstate</td></tr>";
+        echo $tablerow;
+    }
+
+    //$count = mysqli_num_rows($selectRunningData);
+    //echo $count . "<br>";
 }

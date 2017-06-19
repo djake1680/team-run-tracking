@@ -11,6 +11,8 @@ else {
 <?php
 
 $sessionZipCode = $_SESSION['zipcode'];
+
+//showRunningData();
 ?>
 
 <!--    <script src="../main.js"></script>-->
@@ -39,6 +41,31 @@ $sessionZipCode = $_SESSION['zipcode'];
     <div class="container">
         <!-- ADD RUN FORM -->
         <?php include('../template/addrunform.php'); ?>
+        <?php
+            if(isset($_SESSION['add-run'])) {
+                echo $_SESSION['add-run'];
+                unset($_SESSION['add-run']);
+            }
+        ?>
+    </div>
+
+    <div class=" container running-data">
+        <h3>Run History</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Miles</th>
+                <th>Time</th>
+                <th>Per Mile</th>
+                <th>City</th>
+                <th>State</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php showRunningData() ?>
+            </tbody>
+        </table>
     </div>
 
 

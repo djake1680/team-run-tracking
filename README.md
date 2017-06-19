@@ -15,19 +15,10 @@ Create Database - MySQL
         g. user level
         h. city
         i. state
-	2. Teams
-		a. Unique Team ID
-		b. Team Name
-		c. Runners
-		d. Mile Goal
-	3. Running Data
+	2. Running Data
 		a. Unique User ID
-		b. Run Date
+		b. Run Date - timestamp saved as int
 		c. Run Miles
-		d. Run Time
+		d. Run Time - in total seconds
 		e. RunCity
 		f. RunState
-		g. Teamname(in case user is in more than one team)
-	4. Team/user
-		a. Unique Team ID
-        b. Unique User ID
