@@ -15,7 +15,6 @@ $sessionZipCode = $_SESSION['zipcode'];
 //showRunningData();
 ?>
 
-<!--    <script src="../main.js"></script>-->
     <style><?php include '../style.css'; ?></style>
 
     <script type="text/javascript"> userWeather(<?php echo $sessionZipCode ?>); </script>
@@ -49,7 +48,7 @@ $sessionZipCode = $_SESSION['zipcode'];
         ?>
     </div>
 
-    <div class=" container running-data">
+    <div class="container running-data">
         <h3>Run History</h3>
         <table class="table table-striped">
             <thead>
@@ -60,6 +59,8 @@ $sessionZipCode = $_SESSION['zipcode'];
                 <th>Per Mile</th>
                 <th>City</th>
                 <th>State</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -69,4 +70,6 @@ $sessionZipCode = $_SESSION['zipcode'];
     </div>
 
 
-<? //php include('../template/footer.php'); ?>
+
+
+<?php include('../template/footer.php'); ?>

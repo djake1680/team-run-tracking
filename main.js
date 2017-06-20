@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    console.log("document ready");
+
     var date_input=$('input[name="run-date"]'); //our date input has the name "add-run-date"
     date_input.datepicker({
         format: 'mm/dd/yyyy',
@@ -8,7 +10,12 @@ $(document).ready(function() {
         autoclose: true,
     });
 
+    $( "h1" ).click(function() {
+        alert( "Handler for .click() called." );
+    });
+
 });
+
 
 function userWeather(zipcode) {
     //$(".zipcode").html(zipcode);

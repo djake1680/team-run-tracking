@@ -52,13 +52,13 @@ function createUser() {
             echo "Record Created";
         }
 
-        $_POST = array();
     }
 }
 
 function logout_user() {
     echo "logging out " . $_SESSION['firstname'] . "<br>";
     unset($_SESSION['firstname']);
+    $_POST = array();
     session_destroy();
     echo "logged out";
 }
@@ -104,19 +104,21 @@ function login_user($login_username, $login_password) {
             else {
                 echo "password is fine";
             }
+
+            $_SESSION['firstname'] = $dbFirstname;
+            $_SESSION['zipcode'] = $dbZipCode;
+            $_SESSION['user_id'] = $user_id;
+            header("Location: pages/personalpage.php");
         }
         else {
             echo "issue with password";
         }
-//        echo "match found!!!";
-        $_SESSION['firstname'] = $dbFirstname;
-        $_SESSION['zipcode'] = $dbZipCode;
-        $_SESSION['user_id'] = $user_id;
-        header("Location: pages/personalpage.php");
+
     }
     else {
         echo "incorrect credentials";
     }
+
 }
 
 function add_run() {
@@ -182,11 +184,11 @@ function showRunningData() {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
 
-    $selectRunningDataQuery = "SELECT * FROM run_data WHERE user_id = '$userid' ORDER BY run_date";
+    $selectRunningDataQuery = "SELECT * FROM run_data WHERE user_id = '$userid' ORDER BY run_date DESC";
     $selectRunningData = mysqli_query($connection, $selectRunningDataQuery);
 
     while ($row = mysqli_fetch_array($selectRunningData)) {
-
+        $idRunDate = $row['run_date'];
         $rundate = date('m/d/Y', $row['run_date']);
         $runmiles = $row['run_miles'];
 
@@ -205,14 +207,16 @@ function showRunningData() {
         $averageseconds = $runtime / $runmiles;
         $averageminutes = floor($averageseconds / 60);
         $averageleftoverseconds = round($averageseconds % 60);
+        if($averageleftoverseconds < 10) {
+            $averageleftoverseconds = "0" . $averageleftoverseconds;
+        }
         $finalaverage = $averageminutes . ":" . $averageleftoverseconds;
-
-        //$runaverage = $runtime / $runmiles;
 
         $runcity = $row['run_city'];
         $runstate = $row['run_state'];
 
-        $tablerow = "<tr><td>$rundate</td><td>$runmiles</td><td>$finaltime</td><td>$finalaverage</td><td>$runcity</td><td>$runstate</td></tr>";
+        $tablerow = "<tr><td>$rundate</td><td>$runmiles</td><td>$finaltime</td><td>$finalaverage</td><td>$runcity</td><td>$runstate</td><td>";
+        $tablerow = $tablerow . "<button id='$idRunDate' class='btn btn-warning'>Edit</button></td><td><button id='$idRunDate' class='btn btn-danger delete-run-button'>Delete</button></td></tr>";
         echo $tablerow;
     }
 

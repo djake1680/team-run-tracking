@@ -11,6 +11,7 @@ if(isset($_POST['login-submit'])) {
         global $connection;
         $login_username = $_POST['login-username'];
         $login_password = $_POST['login-password'];
+        $_POST = array();
         login_user($login_username, $login_password);
     }
 
