@@ -21,14 +21,6 @@
     <!-- Bootstrap Date-Picker Plugin -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-<!--    --><?php
-//    if(file_exists("main.js")) {
-//        echo "<script src=\"main.js\"></script>";
-//    }
-//    else if(file_exists("../main.js")) {
-//        echo "<script src=\"../main.js\"></script>";
-//    }
-//    ?>
 
     <script src="/track-my-running/main.js"></script>
 
@@ -43,27 +35,14 @@
                 <li class="navbar-text">Track My Running</li>
             </ul>
             <ul class="logged_in_top_menu">
-                <!--<li><button class="btn btn-header">Log Out</button></li>-->
-                <?php
-                if(file_exists("../pages/logout-complete.php")) {
-                    echo "<li><a href='../pages/logout-complete.php'><button class='btn btn-header'>Log Out</button></a></li>";
-                }
-                else if(file_exists("pages/logout-complete.php")) {
-                    echo "<li><a href='pages/logout-complete.php'><button class='btn btn-header'>Log Out</button></a></li>";
-                }
-                if(file_exists("index.php")) {
-                echo "<li><a href='index.php'><button class='btn btn-header'>Home Page</button></a></li>";
-                }
-                else if(file_exists("../index.php")) {
-                echo "<li><a href='../index.php'><button class='btn btn-header'>Home Page</button></a></li>";
-                }
-                if(file_exists("../pages/personalpage.php")) {
-                    echo "<li><a href='../pages/personalpage.php'><button class='btn btn-header'>Personal Page</button></a></li>";
-                }
-                else if(file_exists("pages/personalpage.php")) {
-                    echo "<li><a href='pages/personalpage.php'><button class='btn btn-header'>Personal Page</button></a></li>";
-                }
-                ?>
+
+
+                <li><a href='/track-my-running/pages/logout-complete.php'><button class='btn btn-header'>Log Out</button></a></li>
+
+                <li><a href='/track-my-running/index.php'><button class='btn btn-header'>Home Page</button></a></li>
+
+                <li><a href='/track-my-running/pages/personalpage.php'><button class='btn btn-header'>Personal Page</button></a></li>
+
             </ul>
         </div>
     </div>

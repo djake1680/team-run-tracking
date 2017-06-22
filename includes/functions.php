@@ -223,3 +223,17 @@ function showRunningData() {
     //$count = mysqli_num_rows($selectRunningData);
     //echo $count . "<br>";
 }
+
+function delete_run($deleted_run) {
+    global $connection;
+    $query = "DELETE from run_data WHERE run_date = '$deleted_run'";
+
+    $result = mysqli_query($connection, $query);
+
+    if(!$result) {
+        //die('Query FAILED' . mysqli_error());
+    }
+    else {
+        return "Run Deleted";
+    }
+}
