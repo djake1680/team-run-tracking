@@ -15,6 +15,9 @@ $sessionZipCode = $_SESSION['zipcode'];
 //showRunningData();
 ?>
 
+
+    <?php include '../template/edit-run-form.php'; ?>
+
     <style><?php include '../style.css'; ?></style>
 
     <script type="text/javascript"> userWeather(<?php echo $sessionZipCode ?>); </script>

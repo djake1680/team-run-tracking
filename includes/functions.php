@@ -216,8 +216,9 @@ function showRunningData() {
         $runstate = $row['run_state'];
 
         $tablerow = "<tr><td>$rundate</td><td>$runmiles</td><td>$finaltime</td><td>$finalaverage</td><td>$runcity</td><td>$runstate</td><td>";
-        $tablerow = $tablerow . "<button id='$idRunDate' class='btn btn-warning'>Edit</button></td><td><button id='$idRunDate' class='btn btn-danger delete-run-button'>Delete</button></td></tr>";
+        $tablerow = $tablerow . "<button id='$idRunDate' class='btn btn-warning edit-run-button' data-toggle='modal' data-target='#editRunModal'>Edit</button></td><td><button id='$idRunDate' class='btn btn-danger delete-run-button'>Delete</button></td></tr>";
         echo $tablerow;
+
     }
 
     //$count = mysqli_num_rows($selectRunningData);
@@ -230,10 +231,30 @@ function delete_run($deleted_run) {
 
     $result = mysqli_query($connection, $query);
 
+
+
     if(!$result) {
         //die('Query FAILED' . mysqli_error());
     }
     else {
+        mysqli_close($connection);
         return "Run Deleted";
+    }
+}
+
+function find_row_to_edit($edit_id) {
+    global $connection;
+    $query = "SELECT * from run_data WHERE run_date = '$edit_id'";
+
+    $result = mysqli_query($connection, $query);
+
+    $row = mysqli_fetch_array($result);
+
+    if(!$result) {
+        //die('Query FAILED' . mysqli_error());
+    }
+    else {
+        mysqli_close($connection);
+        return $row;
     }
 }

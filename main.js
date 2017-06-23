@@ -22,6 +22,48 @@ $(document).ready(function() {
         });
     });
 
+    // EDIT Run Button Clicked
+    // First needs to find row from DB
+    // Seconds needs to put response into edit form
+    $(".edit-run-button").click(function(event) {
+        var row_to_edit = event.target.id;
+        //console.log(id_to_edit);
+
+        $.ajax({
+            type: 'POST',
+            url: '../ajax/row-to-edit.php',
+            data: {edit_id: row_to_edit},
+            success: function(response) {
+                response = JSON.parse(response);
+                var runDate = response.run_date;
+                var runMiles = response.run_miles;
+                var runTime = response.run_time;
+                var runCity = response.run_city;
+                var runState = response.run_state;
+
+                var runHours = Math.floor(runTime / 3600);
+                var leftoverSeconds = runTime - (runHours * 3600);
+                var runMinutes = Math.floor(leftoverSeconds / 60);
+                var finalSeconds = runTime - ((runHours * 3600) + (runMinutes * 60));
+
+                console.log(finalSeconds);
+
+                $('#edit-run-date').val(runDate);
+                $('#edit-run-miles').val(runMiles);
+                $('#edit-run-hours-select').val(runHours);
+                $('#edit-run-minutes-select').val(runMinutes);
+                $('#edit-run-seconds-select').val(finalSeconds);
+                $('#edit-run-city').val(runCity);
+                $('#edit-run_state_select').val(runState);
+            }
+        });
+    });
+
+    // Edit Run Form Submitted
+    $(".edit-run-submit").click(function(event) {
+        console.log(event);
+    });
+
 });
 
 
