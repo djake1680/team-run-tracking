@@ -1,5 +1,24 @@
 $(document).ready(function() {
 
+    $('.add-run-form-container').hide();
+
+    var showDetails = true;
+    $(".add-run-button").click(function(){
+        $(".add-run-form-container").toggle(500);
+        if(showDetails === true) {
+            $(".add-run-button").html("Cancel");
+            $('.add-run-button').removeClass('btn-primary');
+            $('.add-run-button').addClass('btn-danger');
+            showDetails = false;
+        }
+        else {
+            $(".add-run-button").html("Add Run");
+            $('.add-run-button').removeClass('btn-danger');
+            $('.add-run-button').addClass('btn-primary');
+            showDetails = true;
+        }
+    });
+
     var date_input=$('input[name="run-date"]'); //our date input has the name "add-run-date"
     date_input.datepicker({
         format: 'mm/dd/yyyy',

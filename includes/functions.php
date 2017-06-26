@@ -90,7 +90,7 @@ function login_user($login_username, $login_password) {
             if(password_needs_rehash($dbPassword, PASSWORD_DEFAULT, $options)) {
                 //echo "password needs rehashed";
                 $newPassword = password_hash($login_password, PASSWORD_BCRYPT, $options);
-                echo $newPassword;
+                //echo $newPassword;
                 $query = "UPDATE users SET password ='$newPassword' where username='$dbUsername'";
                 $result = mysqli_query($connection, $query);
 
@@ -98,17 +98,18 @@ function login_user($login_username, $login_password) {
                     //die('Query FAILED' . mysqli_error());
                 }
                 else {
-                    echo "Password Updated";
+                    //echo "Password Updated";
                 }
             }
             else {
-                echo "password is fine";
+                //echo "password is fine";
             }
 
             $_SESSION['firstname'] = $dbFirstname;
             $_SESSION['zipcode'] = $dbZipCode;
             $_SESSION['user_id'] = $user_id;
-            header("Location: pages/personalpage.php");
+//            header("Location: pages/personalpage.php");
+            echo '<script type="text/javascript">location.replace("pages/personalpage.php");</script>';
         }
         else {
             echo "issue with password";

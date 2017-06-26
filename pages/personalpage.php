@@ -40,19 +40,18 @@ $sessionZipCode = $_SESSION['zipcode'];
 
     </div>
 
-    <div class="container">
-        <!-- ADD RUN FORM -->
-        <?php include('../template/addrunform.php'); ?>
-        <?php
+    <div class="container running-data">
+        <h3>Run History <button class="btn btn-primary add-run-button">Add Run</button></h3>
+        <div class="container add-run-form-container">
+            <!-- ADD RUN FORM -->
+            <?php include('../template/addrunform.php'); ?>
+            <?php
             if(isset($_SESSION['add-run'])) {
                 echo $_SESSION['add-run'];
                 unset($_SESSION['add-run']);
             }
-        ?>
-    </div>
-
-    <div class="container running-data">
-        <h3>Run History</h3>
+            ?>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>

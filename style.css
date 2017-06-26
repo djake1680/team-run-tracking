@@ -2,13 +2,23 @@ body {
     min-height: 100vh;
 }
 
+.navbar-title {
+    font-family: sans-serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    font-style: oblique;
+    color: #ff8c1a;
+    margin-top: 3px;
+    /*text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;*/
+}
+
 .btn-header {
     background-color: #ff8c1a;
     color: white;
     font-size: 1.2em;
 }
 
-.logged-in-header {
+.logged-in-header, .logged-out-header {
     background-color: #42b3f4;
 }
 
@@ -82,6 +92,12 @@ body {
 
 .team-page {
     width: 90%;
+}
+
+/* Add run container */
+.add-run-form-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* Add Run Submit Button */

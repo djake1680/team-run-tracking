@@ -30,10 +30,10 @@
 <body>
 
    <nav class="navbar navbar-default header">
-    <div class="container-fluid">
+    <div class="container-fluid logged-out-header">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="navbar-text">Track My Running</li>
+                <li class="navbar-title">Track My Running</li>
             </ul>
         </div>
     </div>

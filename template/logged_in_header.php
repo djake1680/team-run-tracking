@@ -32,7 +32,7 @@
     <div class="container-fluid logged-in-header">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="navbar-text">Track My Running</li>
+                <li class="navbar-title">Track My Running</li>
             </ul>
             <ul class="logged_in_top_menu">
 
